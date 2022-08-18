@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="使用spring-data-JPA分页"><meta name="keywords" content="后端"><meta name="author" content="xyc"><meta name="copyright" content="xyc"><title>使用spring-data-JPA分页 | blog</title><link rel="shortcut icon" href="/blog/melody-favicon.ico"><link rel="stylesheet" href="/blog/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '5.3.0'
+} </script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/blog/atom.xml" title="blog" type="application/atom+xml">
+</head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Spring-data-JPA%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%B9%B6%E5%88%86%E9%A1%B5"><span class="toc-number">1.</span> <span class="toc-text">使用Spring-data-JPA查询数据并分页</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E4%BD%BF%E7%94%A8JPA-%E8%87%AA%E5%B8%A6%E7%9A%84%E6%9F%A5%E8%AF%A2%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E5%88%86%E9%A1%B5"><span class="toc-number">1.1.</span> <span class="toc-text">1、使用JPA 自带的查询接口实现分页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E4%BD%BF%E7%94%A8-Query%E6%96%B9%E5%BC%8F%EF%BC%8C%E7%BC%96%E5%86%99SQL%E8%AF%AD%E5%8F%A5%E8%BF%9B%E8%A1%8C%E6%9F%A5%E8%AF%A2%E5%B9%B6%E5%88%86%E9%A1%B5"><span class="toc-number">1.2.</span> <span class="toc-text">2、使用@Query方式，编写SQL语句进行查询并分页</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A5%E4%B8%8B%E4%B8%BA%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">以下为注意事项</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/blog/img/avatar.png"></div><div class="author-info__name text-center">xyc</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/blog/archives"><span class="pull-left">Articles</span><span class="pull-right">26</span></a><a class="author-info-articles__tags article-meta" href="/blog/tags"><span class="pull-left">Tags</span><span class="pull-right">10</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://yangchen-1252650257.cos.ap-beijing.myqcloud.com/assets/img/v2-666c1642237819a9a20503b635c71ce0_720w.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/blog/">blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/blog/">Home</a><a class="site-page" href="/blog/archives">Archives</a><a class="site-page" href="/blog/tags">Tags</a><a class="site-page" href="/blog/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">使用spring-data-JPA分页</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-05-16</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="使用Spring-data-JPA查询数据并分页"><a href="#使用Spring-data-JPA查询数据并分页" class="headerlink" title="使用Spring-data-JPA查询数据并分页"></a>使用Spring-data-JPA查询数据并分页</h1><h2 id="1、使用JPA-自带的查询接口实现分页"><a href="#1、使用JPA-自带的查询接口实现分页" class="headerlink" title="1、使用JPA 自带的查询接口实现分页"></a>1、使用JPA 自带的查询接口实现分页</h2><p>如果查询的数据是一张数据表中的数据，那么可以使用JPA自带的查询接口进行查询，例如 有一个表结构为：user</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>gender</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>001</td>
+<td>tom</td>
+<td>male</td>
+</tr>
+<tr>
+<td>002</td>
+<td>jerry</td>
+<td>male</td>
+</tr>
+<tr>
+<td>003</td>
+<td>Mary</td>
+<td>female</td>
+</tr>
+</tbody></table>
+<p>如果查询这张用户表中数据，并且返回分页的形式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Page&lt;User&gt;findbyId(Pageable pageable,Integer id);</span><br></pre></td></tr></table></figure>
+<h2 id="2、使用-Query方式，编写SQL语句进行查询并分页"><a href="#2、使用-Query方式，编写SQL语句进行查询并分页" class="headerlink" title="2、使用@Query方式，编写SQL语句进行查询并分页"></a>2、使用@Query方式，编写SQL语句进行查询并分页</h2><p>如果需要查询的数据，是两张以上的表，并且需要返回分页的形式，这时候，JPA自带的分页方式就变得不好用了，这时候比较好的查询方式是编写SQL语句，用@Query注解</p>
+<p>例如在user表的基础上，有一张成绩表，score</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>001</td>
+<td>100</td>
+</tr>
+<tr>
+<td>002</td>
+<td>50</td>
+</tr>
+<tr>
+<td>003</td>
+<td>70</td>
+</tr>
+</tbody></table>
+<p>如果需要查询姓名和成绩并且以分页的方式返回</p>
+<p>用Query方法查询的方式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Query</span>(<span class="keyword">value</span><span class="operator">=</span>&quot;select  t1.name&quot; <span class="operator">+</span></span><br><span class="line">            &quot;student_grade,password from user t1  join score t2 on t1.id= t2.id&quot;,</span><br><span class="line">            countQuery<span class="operator">=</span>&quot;select count(*) from user t1  join score t2 on t1.id= t2.id &quot;,nativeQuery <span class="operator">=</span> <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p>以上需要注意的地方是，这个查询有两个部分，首先是带join的SQL联表查询，此外，需要注意的是，必须要添加 countQuery =“ ”，在其中编写count 的SQL语句，count语句的目的，是为了让分页组件能够知道数据的总数，这样，才能够实现分页的效果</p>
+<h4 id="以下为注意事项"><a href="#以下为注意事项" class="headerlink" title="以下为注意事项"></a>以下为注意事项</h4><p>1、为了保证SQL的正确查询，需要给查询的表添加一个别名，在没有别名的情况下，有时候会报错</p>
+<p>2、countQuery是必须带的一个参数，不然会报SQL查询失败的错误</p>
+<p>3、至于为什么要加countQuery，除了解释为查询数据总数为了分页以外，没有找到一个较为官方的解释，查阅了好多资料，几乎没有发现好的解答，直到看到Stack Overflow上的一条回复</p>
+<blockquote>
+<p>You can use pagination with a native query. It is documented here: <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#_native_queries">https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#_native_queries</a></p>
+<p>“<em>You can however use native queries for pagination by specifying the count query yourself: Example 59. Declare native count queries for pagination at the query method using @Query</em>“</p>
+</blockquote>
+<p>结合这个解释和分页的逻辑分析，基本可以解释这个问题。</p>
+<p>4、此外，@Query查询和@countQuery查询，必须是相同的查询条件，或者可以解释为 @countQuery到的总数，必须和Query到的数据数量相等。</p>
+<p>5、通过@Query编写的SQL语句，字段的顺序要和Java中对象的变量的顺序相同，这样才能保证ORM后的结果匹配。</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">xyc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://x-y-c.github.io/blog/2020/05/16/2020-05-16-spring-data-jpa分页/">https://x-y-c.github.io/blog/2020/05/16/2020-05-16-spring-data-jpa分页/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/%E5%90%8E%E7%AB%AF/">后端</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/blog/2020/05/31/2020-05-31-springboot%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/"><i class="fa fa-chevron-left">  </i><span>springboot使用外部配置文件</span></a></div><div class="next-post pull-right"><a href="/blog/2020/04/05/2020-04-05-%E8%81%8A%E8%81%8Adocer(4)/"><span>聊聊docer(四)-docker中添加ssh服务</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://yangchen-1252650257.cos.ap-beijing.myqcloud.com/assets/img/v2-666c1642237819a9a20503b635c71ce0_720w.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By xyc</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/blog/js/utils.js?version=1.9.0"></script><script src="/blog/js/fancybox.js?version=1.9.0"></script><script src="/blog/js/sidebar.js?version=1.9.0"></script><script src="/blog/js/copy.js?version=1.9.0"></script><script src="/blog/js/fireworks.js?version=1.9.0"></script><script src="/blog/js/transition.js?version=1.9.0"></script><script src="/blog/js/scroll.js?version=1.9.0"></script><script src="/blog/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

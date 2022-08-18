@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>blog</title>
+  
+  
+  <link href="https://x-y-c.github.io/blog/atom.xml" rel="self"/>
+  
+  <link href="https://x-y-c.github.io/blog/"/>
+  <updated>2022-08-18T06:59:20.492Z</updated>
+  <id>https://x-y-c.github.io/blog/</id>
+  
+  <author>
+    <name>xyc</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://x-y-c.github.io/blog/2022/08/18/2020-10-18-Java%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
+    <id>https://x-y-c.github.io/blog/2022/08/18/2020-10-18-Java%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</id>
+    <published>2022-08-18T06:59:20.492Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java基础问题记录–BabyYang</p><p>写逻辑这么久才发现自己是面向百度编程</p><p>基础的一些java用法都没记住真的太菜啦</p><h3 id="java标准输入"><a href="#java标准输入" class="headerlink" title="java标准输入"></a>java标准输入</h3><p>基础的Scanner输入</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Scanner sc &#x3D; new Scanner(System.in);</span><br><span class="line">sc.nextLine();</span><br><span class="line">sc.next();</span><br><span class="line">sc.nextInt();</span><br></pre></td></tr></table></figure><p>参考：<a href="https://blog.csdn.net/cy973071263/article/details/88908810">https://blog.csdn.net/cy973071263/article/details/88908810</a></p><h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> d = <span class="number">12345.678</span>;</span><br><span class="line"><span class="comment">//直接截断</span></span><br><span class="line">DecimalFormat df = <span class="keyword">new</span> DecimalFormat(<span class="string">&quot;#.00&quot;</span>);</span><br><span class="line">System.out.println(df.format(d));</span><br><span class="line"><span class="comment">//四舍五入</span></span><br><span class="line">System.out.println(String.format(<span class="string">&quot;%.2f&quot;</span>, d));</span><br><span class="line">System.out.println((<span class="keyword">double</span>) Math.round(d * <span class="number">100</span>) / <span class="number">100</span>)</span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// 12345.67</span></span><br><span class="line"><span class="comment">// 12345.68</span></span><br><span class="line"><span class="comment">// 12345.68</span></span><br></pre></td></tr></table></figure><h3 id="hashmap遍历"><a href="#hashmap遍历" class="headerlink" title="hashmap遍历"></a>hashmap遍历</h3><ul><li><p>hashmap遍历不会真的太蠢惹，遍历有超多方法</p></li><li><p>首先是定义 ： </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br></pre></td></tr></table></figure></li><li><p>方法1 for-each 迭代 entries</p><p>这是最常见的方法，并在大多数情况下更可取的。当你在循环中需要使用Map的键和值时，就可以使用这个方法</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Map.Entry&lt;Integer, Integer&gt; entry : map.entrySet())&#123;</span><br><span class="line">System.out.println(<span class="string">&quot;key = &quot;</span> + entry.getKey() + <span class="string">&quot;, value = &quot;</span> + entry.getValue())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>注意：For-Each循环是Java5新引入的，所以只能在Java5以上的版本中使用。如果你遍历的map是null的话，For-Each循环会抛出NullPointerException异常，所以在遍历之前你应该判断是否为空引用。</p></li><li><p>方法2 for-each 迭代keys和values</p><p>如果你只需要用到map的keys或values时，你可以遍历KeySet或者values代替entrySet</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line"> </span><br><span class="line"><span class="comment">//iterating over keys only</span></span><br><span class="line"><span class="keyword">for</span> (Integer key : map.keySet()) &#123;</span><br><span class="line">System.out.println(<span class="string">&quot;Key = &quot;</span> + key);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//iterating over values only</span></span><br><span class="line"><span class="keyword">for</span> (Integer value : map.values()) &#123;</span><br><span class="line">System.out.println(<span class="string">&quot;Value = &quot;</span> + value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这个方法比entrySet迭代具有轻微的性能优势(大约快10%)并且代码更简洁</p></li><li><p>方法3 使用Iterator迭代</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Map.Entry&lt;Integer, Integer&gt;&gt; entries = map.entrySet().iterator();</span><br><span class="line"><span class="keyword">while</span> (entries.hasNext()) &#123;</span><br><span class="line">Map.Entry&lt;Integer, Integer&gt; entry = entries.next();</span><br><span class="line">System.out.println(<span class="string">&quot;Key = &quot;</span> + entry.getKey() + <span class="string">&quot;, Value = &quot;</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这个似乎有点多余但它具有自己的优势。首先，它是遍历老java版本map的唯一方法。另外一个重要的特性是可以让你在迭代的时候从map中删除entries的(通过调用iterator.remover())唯一方法.如果你试图在For-Each迭代的时候删除entries，你将会得到unpredictable resultes 异常。</p><p>从性能方法看，这个方法等价于使用For-Each迭代</p></li><li><p>方法4 迭代keys并搜索values[超级低效]</p><p>这个方法看上去比方法1更简洁，但是实际上它更慢更低效，通过key得到value值更耗时（这个方法在所有实现map接口的map中比方法#1慢20%-200%）。<br>参考:<a href="https://blog.csdn.net/scgyus/article/details/79105211">https://blog.csdn.net/scgyus/article/details/79105211</a></p></li></ul><h3 id="数组基本操作"><a href="#数组基本操作" class="headerlink" title="数组基本操作"></a>数组基本操作</h3><ol><li><p>声明一个int型的数组</p><p>int[] array  或 int array[]</p></li><li><p>给数组分配空间</p><p>array=new int[10]</p></li><li><p>给数组赋值</p><p>a. 初始化赋值  array={0, 1, 2, 3, 4, 5}</p><p>b. 利用下标赋值  array[0] = 1</p><p>c. 使用循环赋值</p><p>for(int i=0; i&lt;array.length();i++){</p><p>​    array[i] = in.nextInt();</p><p>}</p></li><li><p>数组输出</p><p>传统for，类似赋值时的方法</p><p>for each，for(int a:array)</p><p>Array中的toString方法 Arrays.toString(array)</p></li><li><p>多维数组</p><p>在java中实际上没有多维数组，只有一维数组</p><p>多维数组被解读为数组的数组</p><p>int[] [] array2 = { {1, 2}, {3, 4} )</p></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Java基础问题记录–BabyYang&lt;/p&gt;
+&lt;p&gt;写逻辑这么久才发现自己是面向百度编程&lt;/p&gt;
+&lt;p&gt;基础的一些java用法都没记住真的太菜啦&lt;/p&gt;
+&lt;h3 id=&quot;java标准输入&quot;&gt;&lt;a href=&quot;#java标准输入&quot; class=&quot;headerlink&quot; ti</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>java多线程之线程安全分析</title>
+    <link href="https://x-y-c.github.io/blog/2022/08/18/2021-01-12-%E5%A4%9A%E7%BA%BF%E7%A8%8B5-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90/"/>
+    <id>https://x-y-c.github.io/blog/2022/08/18/2021-01-12-%E5%A4%9A%E7%BA%BF%E7%A8%8B5-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90/</id>
+    <published>2022-08-18T06:59:20.492Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="java多线程之线程安全分析"><a href="#java多线程之线程安全分析" class="headerlink" title="java多线程之线程安全分析"></a>java多线程之线程安全分析</h1><p>为什么要分析线程安全？</p><p>​    我的理解是，多线程的前提下，只有保证线程安全，或者说，只有确保为不安全的代码部分进行加锁，才能保证代码最终的结果是正确的。</p><h2 id="成员变量和静态变量安全分析"><a href="#成员变量和静态变量安全分析" class="headerlink" title="成员变量和静态变量安全分析"></a>成员变量和静态变量安全分析</h2><p>可以从以下几个点去考虑：</p><ul><li><p>如果变量没有被共享，则线程安全</p></li><li><p>如果变量被共享了，根据变量状态是否能够改变，又分为两种情况：</p><ul><li>如果只有读操作，则线程安全</li><li>如果有读写操作，则这段代码就是临界区，需要考虑线程安全</li></ul></li></ul><p>局部变量是否安全：</p><ul><li><p>局部变量是线程安全的</p></li><li><p>局部变量引用的对象不一定是线程安全的</p><ul><li><p>如果该对象没有逃离方法的作用范围，那么该变量是线程安全的</p></li><li><p>如果该对象逃离方法的作用范围，则需要考虑线程安全问题</p></li></ul></li></ul><h2 id="常见的线程安全类："><a href="#常见的线程安全类：" class="headerlink" title="常见的线程安全类："></a>常见的线程安全类：</h2><ul><li>String</li><li>Integer</li><li>StringBuffer</li><li>Random</li><li>Vector</li><li>Hashtable</li><li>java.util.concurrent包下的类</li></ul><p>线程安全指的是，多个线程调用它们的同一个实例的某个方法时，是线程安全的，即</p><ul><li><p>它们每个方法是原子的</p></li><li><p>多个方法的组合不一定是原子的</p><p><em>例如：hashtable，put()方法是线程安全的，get()方法也是线程安全的，但是如果这两个方法组合成为方法块，不能保证多线程下的方法块是线程安全的。可能一个线程put()的过程中，时间片用完，切换给线程二，线程二做get()操作，会因为未放入数据就先读取数据了，这样就是线程不安全的。</em></p></li></ul><h2 id="不可变类的线程安全性"><a href="#不可变类的线程安全性" class="headerlink" title="不可变类的线程安全性"></a>不可变类的线程安全性</h2><p>String、Integer都是不可变类，因为其内部的状态不可以改变，所以这些类中的方法都是线程安全的。不可变类是指，这个对象创建了就不能修改了，只能读取，如String，String的replace()方法等，是创建了新的String对象，并没有修改原来的对象。</p><h3 id="为什么String类是final的"><a href="#为什么String类是final的" class="headerlink" title="为什么String类是final的"></a>为什么String类是final的</h3><p>根据java的知识：</p><p><strong>final 关键字声明类可以把类定义为不能继承的，即最终类；或者用于修饰方法，该方法不能被子类重写</strong></p><p>正是因为这个不能被子类重写，所以可以保证String一定是安全的。</p><h4 id="为什么被子类重写会不安全："><a href="#为什么被子类重写会不安全：" class="headerlink" title="为什么被子类重写会不安全："></a>为什么被子类重写会不安全：</h4><p>因为子类如果可以重写方法，例如：子类用多线程来重写String中的方法，就可能因为多个线程的上下文切换，导致线程不安全。这类因为子类重写导致不安全的情况，经常不容易想到。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;java多线程之线程安全分析&quot;&gt;&lt;a href=&quot;#java多线程之线程安全分析&quot; class=&quot;headerlink&quot; title=&quot;java多线程之线程安全分析&quot;&gt;&lt;/a&gt;java多线程之线程安全分析&lt;/h1&gt;&lt;p&gt;为什么要分析线程安全？&lt;/p&gt;
+&lt;p&gt;​  </summary>
+      
+    
+    
+    
+    
+    <category term="多线程" scheme="https://x-y-c.github.io/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java多线程之join、yield、sleep</title>
+    <link href="https://x-y-c.github.io/blog/2022/08/18/2021-01-08-%E5%A4%9A%E7%BA%BF%E7%A8%8B-3/"/>
+    <id>https://x-y-c.github.io/blog/2022/08/18/2021-01-08-%E5%A4%9A%E7%BA%BF%E7%A8%8B-3/</id>
+    <published>2022-08-18T06:59:20.492Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Java多线程之join、yield、sleep"><a href="#Java多线程之join、yield、sleep" class="headerlink" title="Java多线程之join、yield、sleep"></a>Java多线程之join、yield、sleep</h1><h2 id="yield方法"><a href="#yield方法" class="headerlink" title="yield方法"></a>yield方法</h2><p>这个方法感觉平时是用的最少的</p><p>1、调用yield会让当前线程从Running进入Runnable状态，然后调度执行其他同优先级的线程，如果此时没有同优先级的线程，那么不能保证让当前线程暂停的效果。</p><p>2、具体的实现依赖于操作系统的任务调度器。</p><p>这里提到的 Running就是运行中的状态，而Runnable 对应了操作系统的就绪状态。</p><h2 id="sleep方法"><a href="#sleep方法" class="headerlink" title="sleep方法"></a>sleep方法</h2><p>1、调用sleep方法会让当前线程从Running进入Timed_waiting状态</p><p>2、其他线程可以使用interrupt()方法打断正在睡眠的线程，此时sleep方法会抛出interredException</p><p>3、睡眠结束后的线程未必会立刻执行</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Thread1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Logger LOGGER = LoggerFactory.getLogger(Thread1.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="string">&quot;t1&quot;</span>) &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    LOGGER.info(<span class="string">&quot;begin sleep&quot;</span>);</span><br><span class="line">                    Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    LOGGER.info(<span class="string">&quot;wake up&quot;</span>+e.getMessage());</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        thread.start();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">500</span>);</span><br><span class="line">            LOGGER.info(<span class="string">&quot;唤醒&quot;</span>);</span><br><span class="line">            thread.interrupt();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7</span>:<span class="number">14</span>:<span class="number">31.063</span>  INFO <span class="number">12708</span> --- [             t1] com.example.demo.Thread1                 : begin sleep</span><br><span class="line"><span class="number">2021</span>-<span class="number">01</span>-08 <span class="number">17</span>:<span class="number">14</span>:<span class="number">31.575</span>  INFO <span class="number">12708</span> --- [           main] com.example.demo.Thread1                 : 唤醒</span><br><span class="line"><span class="number">2021</span>-<span class="number">01</span>-08 <span class="number">17</span>:<span class="number">14</span>:<span class="number">31.576</span>  INFO <span class="number">12708</span> --- [             t1] com.example.demo.Thread1                 : wake upsleep interrupted</span><br><span class="line">java.lang.InterruptedException: sleep interrupted</span><br><span class="line">at java.base/java.lang.Thread.sleep(Native Method)</span><br><span class="line">at com.example.demo.Thread1$<span class="number">1.</span>run(Thread1.java:<span class="number">22</span>)</span><br></pre></td></tr></table></figure><h2 id="sleep的另类用法！！！！！！"><a href="#sleep的另类用法！！！！！！" class="headerlink" title="sleep的另类用法！！！！！！"></a>sleep的另类用法！！！！！！</h2><p>利用sleep防止CPU占用100%</p><p>sleep 在没有利用cpu来计算时，不要让while(ture)一直占用cpu，这时可以使用yield或者sleep来让出cpu的使用权给其他程序</p><p>注意，sleep的时间不用太大，只要有sleep就ok，因为sleep会使程序让出CPU时间，给其他程序使用，尤其单核cpu的情况下，不加sleep会使cpu的占用率达到90%+</p><p>可以使用wait或者条件变量达到类似的效果</p><p>不同的是，后两种都需要加锁，并且需要相应的唤醒操作，一般适用于要进行同步的场景</p><p>sleep适用于无需锁同步的场景。</p><h2 id="join方法"><a href="#join方法" class="headerlink" title="join方法"></a>join方法</h2><p>join方法用来等待线程执行结束</p><p>例子如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line">    Logger LOGGER = LoggerFactory.getLogger(Test2.class);</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> r = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span>  </span>&#123;</span><br><span class="line">        Thread t1 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    LOGGER.info(<span class="string">&quot;begin&quot;</span>);</span><br><span class="line">                    TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">                    r = <span class="number">10</span>;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        t1.start();</span><br><span class="line">        </span><br><span class="line">        LOGGER.info(<span class="string">&quot;r= &quot;</span> + r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="number">2021</span>-<span class="number">01</span>-08 <span class="number">23</span>:<span class="number">53</span>:<span class="number">35.591</span>  INFO <span class="number">8212</span> --- [Thread-<span class="number">1</span>] com.example.demo.Test2: begin</span><br><span class="line"><span class="number">2021</span>-<span class="number">01</span>-08 <span class="number">23</span>:<span class="number">53</span>:<span class="number">35.592</span>  INFO <span class="number">8212</span> --- [main] com.example.demo.Test2: r= <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"> <span class="comment">/*可以看到，输出的结果并不是r=10，因为线程休眠了1秒，而主线程在启动了t1线程后，没有等待1秒，直接继续向下执行了输出操作，解决的方案就是，让主线程输出前，等待t1线程执行结束。</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   t1.start();</span><br><span class="line">    t1.join();</span><br><span class="line">    LOGGER.info(<span class="string">&quot;r= &quot;</span> + r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在添加join之后，输出结果如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2021-01-09 00:03:45.855  INFO 9652 --- [Thread-1] com.example.demo.Test2                   : begin</span><br><span class="line">2021-01-09 00:03:46.871  INFO 9652 --- [main] com.example.demo.Test2                   : r&#x3D; 10</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="下一个问题"><a href="#下一个问题" class="headerlink" title="下一个问题"></a>下一个问题</h3><p>因为join可以设置等待时间，那么，如果join的时间大于实际线程执行的时间会怎么样呢？</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t1.start();</span><br><span class="line">    t1.join(3000);</span><br><span class="line">    LOGGER.info(&quot;r&#x3D; &quot; + r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这里把时间等待3秒，而实际线程1秒就可以完成。</p><p>运行结果如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2021-01-09 00:18:20.047  INFO 8968 --- [Thread-1] com.example.demo.Test2                :begin</span><br><span class="line">2021-01-09 00:18:21.053  INFO 8968 --- [main] com.example.demo.Test2                   :r&#x3D; 10</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>可以看到，代码会以线程和等待较短的时间为准。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Java多线程之join、yield、sleep&quot;&gt;&lt;a href=&quot;#Java多线程之join、yield、sleep&quot; class=&quot;headerlink&quot; title=&quot;Java多线程之join、yield、sleep&quot;&gt;&lt;/a&gt;Java多线程之join、y</summary>
+      
+    
+    
+    
+    
+    <category term="多线程" scheme="https://x-y-c.github.io/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多线程二-多线程运行原理和相关的方法</title>
+    <link href="https://x-y-c.github.io/blog/2022/08/18/2021-01-07-%E5%A4%9A%E7%BA%BF%E7%A8%8B-2/"/>
+    <id>https://x-y-c.github.io/blog/2022/08/18/2021-01-07-%E5%A4%9A%E7%BA%BF%E7%A8%8B-2/</id>
+    <published>2022-08-18T06:59:20.492Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="多线程运行原理和相关的方法"><a href="#多线程运行原理和相关的方法" class="headerlink" title="多线程运行原理和相关的方法"></a>多线程运行原理和相关的方法</h1><h2 id="多线程的内存模型"><a href="#多线程的内存模型" class="headerlink" title="多线程的内存模型"></a>多线程的内存模型</h2><p>JVM由堆，栈，方法区所组成，栈内存是给谁用的呢？其实就是线程，每个线程启动后，虚拟机就会为其分配一块栈内存。</p><ul><li><p>每个栈由多个栈帧组成， 对应着每次方法调用时所占用的内存。</p></li><li><p>每个线程只能有一个活动栈帧，对应着当前正在执行的那个方法。</p><h2 id="多线程的上下文切换"><a href="#多线程的上下文切换" class="headerlink" title="多线程的上下文切换"></a>多线程的上下文切换</h2><p>因为以下一些原因导致CPU不再执行当前的线程，转而执行另一个线程的代码</p></li><li><p>线程的CPU时间片用完</p></li><li><p>垃圾回收</p></li><li><p>有更高优先级的线程需要运行</p></li><li><p>线程自己调用了sleep，yield，wait，join，park,synchronized,lock等方法</p></li></ul><p>当Context Switch发生时，需要由操作系统保存当前线程的状态，并恢复另一线程的状态，Java中对应的概念就是程序计数器，它的作用是记住下一条jvm指令的执行地址，是线程私有的。</p><p>状态包括程序计数器，虚拟机栈中每个栈帧的信息，如局部变量，操作数栈，返回地址等。</p><h3 id="Context-Switch频繁发生会影响性能。"><a href="#Context-Switch频繁发生会影响性能。" class="headerlink" title="Context Switch频繁发生会影响性能。"></a>Context Switch频繁发生会影响性能。</h3><h2 id="线程中的相关方法"><a href="#线程中的相关方法" class="headerlink" title="线程中的相关方法"></a>线程中的相关方法</h2><table><thead><tr><th>方法名</th><th>功能说明</th><th>注意</th></tr></thead><tbody><tr><td>Start()</td><td>启动一个新线程，在新的线程运行run方法中的代码</td><td>start方法只是让线程进入就绪状态，（cpu的时间片还没分给它），每个线程对象的方法只能调用一次。</td></tr><tr><td>Run()</td><td>新线程启动后会调用的方法</td><td>如果在构造Thread对象时传递了Runnable参数，则线程启动后会调用Runnable中的run方法，否则默认不执行任何操作。但可以创建Thread的子类对象，用来覆盖默认行为。</td></tr><tr><td>Join()</td><td>等待线程运行结束</td><td></td></tr><tr><td>Join(long n)</td><td>等待线程运行结束，最多等待n毫秒</td><td></td></tr><tr><td>getId()</td><td>获取线程长整型的id</td><td>id是唯一的</td></tr><tr><td>getName()</td><td>获取线程名</td><td></td></tr><tr><td>setName()</td><td>修改线程名</td><td></td></tr><tr><td>getPriority()</td><td>获取线程优先级</td><td></td></tr><tr><td>setPriority(int  )</td><td>修改线程优先级</td><td>java中规定线程优先级是1-10的整数，较大的优先级能提高该线程被CPU调度的几率</td></tr><tr><td>getState()</td><td>获取线程状态</td><td>java中线程状态是用6个enum表示，分别为NEW，RUNNABLE，BLOCKED，WAITING，TIMED_WAITING</td></tr><tr><td>isAlive()</td><td>线程是否存活</td><td></td></tr><tr><td>currentThread()</td><td>获取当前正在执行的线程</td><td></td></tr><tr><td>Sleep(long  n)</td><td>让当前执行的线程休眠n毫秒，休眠时让出cpu的时间片给其他线程</td><td></td></tr></tbody></table><h2 id="关于start-和run"><a href="#关于start-和run" class="headerlink" title="关于start()和run()"></a>关于start()和run()</h2><p>start和run </p><p>想要使用多线程，必须通过start方法来调用。如果直接调用run方法，并不会在新的线程中执行，而会被当成一个普通的方法，由主线程main线程执行，起不到提高代码运行效率的作用。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;多线程运行原理和相关的方法&quot;&gt;&lt;a href=&quot;#多线程运行原理和相关的方法&quot; class=&quot;headerlink&quot; title=&quot;多线程运行原理和相关的方法&quot;&gt;&lt;/a&gt;多线程运行原理和相关的方法&lt;/h1&gt;&lt;h2 id=&quot;多线程的内存模型&quot;&gt;&lt;a href=&quot;#多</summary>
+      
+    
+    
+    
+    
+    <category term="多线程" scheme="https://x-y-c.github.io/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java多线程-1</title>
+    <link href="https://x-y-c.github.io/blog/2022/08/18/2021-01-06-%E5%A4%9A%E7%BA%BF%E7%A8%8B-1/"/>
+    <id>https://x-y-c.github.io/blog/2022/08/18/2021-01-06-%E5%A4%9A%E7%BA%BF%E7%A8%8B-1/</id>
+    <published>2022-08-18T06:59:20.492Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="创建与运行线程"><a href="#创建与运行线程" class="headerlink" title="创建与运行线程"></a>创建与运行线程</h1><p>一直也有用到多线程，但是感觉没有很系统的学习过，都是用的时候临时百度一下，趁着想总结，先记录一下。</p><h2 id="方法一：直接使用Thread"><a href="#方法一：直接使用Thread" class="headerlink" title="方法一：直接使用Thread"></a>方法一：直接使用Thread</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Thread t =<span class="keyword">new</span> Thread()&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> run（）&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//要执行的任务</span></span><br><span class="line">&#125;</span><br><span class="line">&#125; ;</span><br><span class="line"></span><br><span class="line">t.start();<span class="comment">//启动线程</span></span><br><span class="line"><span class="comment">//这种方法是重写了Thread的run方法，从而使得Thread在运行时，会执行重写的方法</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h2><p>使用Runnable 配合Thread  把线程和任务分开，</p><p>Thread代表线程</p><p>Runnable表示可运行的任务（线程要执行的代码）</p> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable =<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//要执行的任务</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">Thread t = <span class="keyword">new</span> Thread（runnable）;</span><br><span class="line"></span><br><span class="line">t.start(); </span><br><span class="line"></span><br></pre></td></tr></table></figure><p>用Runnable更容易与线程池等高级api配合</p><p>用Runnable让任务类脱离了Thread继承体系，更灵活</p><h2 id="方法三："><a href="#方法三：" class="headerlink" title="方法三："></a>方法三：</h2><p>对于线程有返回值的情况</p><p> FutureTask能够接收Callable类型的参数，用来处理有返回结果的情况</p> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code</span></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> LoggerLOGGER=LoggerFactory.getLogger(Code.class);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> ExecutionException,InterruptedException</span>&#123;</span><br><span class="line"></span><br><span class="line">FutureTask&lt;Integer&gt;futureTask = newFutureTask&lt;&gt;(()-&gt;&#123;</span><br><span class="line"></span><br><span class="line">LOGGER.info(<span class="string">&quot;1111111111111111&quot;</span>);</span><br><span class="line"></span><br><span class="line">Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Threadthread = <span class="keyword">new</span> Thread(futureTask,<span class="string">&quot;线程1&quot;</span>);</span><br><span class="line"></span><br><span class="line">thread.start();</span><br><span class="line"></span><br><span class="line">LOGGER.info(String.valueOf(futureTask.get()));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在方法三的代码中，线程中有了返回值，返回值为100，通过futureTask.get()可以获取到返回值，这样可以实现线程间的信息传递。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="函数式编程："><a href="#函数式编程：" class="headerlink" title="函数式编程："></a>函数式编程：</h2><p>在java8中，开始引入了函数式编程。那么，什么样的代码可以化简成函数式编程呢？</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * When an object implementing interface &lt;code&gt;Runnable&lt;/code&gt; is used</span></span><br><span class="line"><span class="comment">     * to create a thread, starting the thread causes the object&#x27;s</span></span><br><span class="line"><span class="comment">     * &lt;code&gt;run&lt;/code&gt; method to be called in that separately executing</span></span><br><span class="line"><span class="comment">     * thread.</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     * The general contract of the method &lt;code&gt;run&lt;/code&gt; is that it may</span></span><br><span class="line"><span class="comment">     * take any action whatsoever.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span>     java.lang.Thread#run()</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>以上的代码摘自JDK中的Runnable接口定义，可以看到Runnable只有一个方法，且含有<code>@FunctionalInterface</code>注解，这样的，就可以化简为lambda表达式的形式。</p><p>如：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable =<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line"> LOGGER.info(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"><span class="comment">//要执行的任务</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;；</span><br><span class="line">Thread t = <span class="keyword">new</span> Thread（runnable）;</span><br><span class="line"></span><br><span class="line">t.start(); </span><br><span class="line"></span><br><span class="line"><span class="comment">//这段代码，可以化简为：</span></span><br><span class="line">Runnable runnable = ()-&gt; &#123; &#123;</span><br><span class="line">                LOGGER.info(<span class="string">&quot;hello&quot;</span>);<span class="comment">//要执行的任务</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        Thread t = <span class="keyword">new</span> Thread(runnable);</span><br><span class="line"></span><br><span class="line">        t.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以看到，new Runnable方法以及唯一的run方法被省略化简成了()-&gt;&#123;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//&#125;的形式。如果有参数，在（）中声明参数即可。</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;创建与运行线程&quot;&gt;&lt;a href=&quot;#创建与运行线程&quot; class=&quot;headerlink&quot; title=&quot;创建与运行线程&quot;&gt;&lt;/a&gt;创建与运行线程&lt;/h1&gt;&lt;p&gt;一直也有用到多线程，但是感觉没有很系统的学习过，都是用的时候临时百度一下，趁着想总结，先记录一下。&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="多线程" scheme="https://x-y-c.github.io/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jvm栈和本地方法栈</title>
+    <link href="https://x-y-c.github.io/blog/2022/08/18/2021-01-05-jvm-1/"/>
+    <id>https://x-y-c.github.io/blog/2022/08/18/2021-01-05-jvm-1/</id>
+    <published>2022-08-18T06:59:20.492Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="jvm栈"><a href="#jvm栈" class="headerlink" title="jvm栈"></a>jvm栈</h1><p>在java代码执行的过程中，方法以及这个方法的相关参数，会放到jvm栈中，每个方法以及这个方法的相关变量，叫做栈帧。</p><h2 id="jvm栈的大小与垃圾回收"><a href="#jvm栈的大小与垃圾回收" class="headerlink" title="jvm栈的大小与垃圾回收"></a>jvm栈的大小与垃圾回收</h2><p>1、垃圾回收机制并不会回收栈内存中的东西，因为栈内存中的变量等，会随着方法的调用完成自动弹出栈。</p><p>2、因为每个线程对应一个栈，并且内存的总大小是固定不变的，所以，每个栈的大小应该合适，如果一个栈的内存大小设置的过大，会使java的线程数下降。</p><h2 id="jvm栈的安全性问题"><a href="#jvm栈的安全性问题" class="headerlink" title="jvm栈的安全性问题"></a>jvm栈的安全性问题</h2><p>1、共享的变量，需要考虑安全性的问题，如果变量是私有的（如在方法中声明），那么就不需要考虑线程安全的问题，因为每个线程对应独立的栈帧。</p><p>2、此外，判断哪一个变量是不是安全的，除了看该变量是不是在方法中声明的私有变量，还要看这个变量有没有作为结果返回。（即这个变量，有没有可能被别的线程调用到，如果可能被调用到，则需要考虑线程安全的问题。例如 通过return返回出去，那么别的方法可能会调用到这个返回出去的变量。）</p><h2 id="关于栈溢出"><a href="#关于栈溢出" class="headerlink" title="关于栈溢出"></a>关于栈溢出</h2><p>一般栈溢出会有两种情况</p><pre><code>- 栈帧过多导致的栈溢出 如递归等- 栈帧过大导致的栈内存溢出 </code></pre><p><img src="https://i.loli.net/2021/01/05/ovI3wTUFc9ZfKWx.png" alt="栈帧1.PNG"></p><p>通过IDEA的DEBUG模式，可以看到栈帧以及相关参数</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;jvm栈&quot;&gt;&lt;a href=&quot;#jvm栈&quot; class=&quot;headerlink&quot; title=&quot;jvm栈&quot;&gt;&lt;/a&gt;jvm栈&lt;/h1&gt;&lt;p&gt;在java代码执行的过程中，方法以及这个方法的相关参数，会放到jvm栈中，每个方法以及这个方法的相关变量，叫做栈帧。&lt;/p&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="jvm" scheme="https://x-y-c.github.io/blog/tags/jvm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多线程之等待、终止、临界问题</title>
+    <link href="https://x-y-c.github.io/blog/2022/08/18/2021-01-09-%E5%A4%9A%E7%BA%BF%E7%A8%8B-4/"/>
+    <id>https://x-y-c.github.io/blog/2022/08/18/2021-01-09-%E5%A4%9A%E7%BA%BF%E7%A8%8B-4/</id>
+    <published>2022-08-18T06:59:20.492Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="多线程之等待、终止、临界问题"><a href="#多线程之等待、终止、临界问题" class="headerlink" title="多线程之等待、终止、临界问题"></a>多线程之等待、终止、临界问题</h1><h2 id="两阶段终止问题"><a href="#两阶段终止问题" class="headerlink" title="两阶段终止问题"></a>两阶段终止问题</h2><h3 id="什么是优雅的终止"><a href="#什么是优雅的终止" class="headerlink" title="什么是优雅的终止"></a>什么是优雅的终止</h3><p>即如何在线程t1中优雅的终止线程t2，优雅是指给t2线程处理自身关键内容的机会而不是直接强制终止。</p><h3 id="错误思路"><a href="#错误思路" class="headerlink" title="错误思路"></a>错误思路</h3><ul><li>使用线程对象的stop()方法停止线程</li></ul><p>stop() 方法会真正杀死线程，如果此时线程锁住了共享资源，那么当它被杀死后，没有机会释放锁，则其他线程将永远无法获得锁。</p><ul><li><p>使用System.exit()方法停止线程</p><p> 目的仅是停止一个线程，但是这种做法会让整个程序都听下来。</p></li></ul><p>所以比较推荐的方法，是需要终止线程时，给线程发送interrupt(),并且线程判断IsInterrupted()来判断是不是发送了打断指令。这里需要注意的是，线程在sleep()的时候，执行interrupt()会抛出异常，但是isInterrupted（）仍然是false，所以，要注意捕获这个异常，并且对应终止线程。</p><p><em>以上提到思路，更适用于线程while(true)时终止的情况，如果正常执行，那么更希望线程可以正常运行完成。</em></p><h2 id="多线程上下文切换的问题"><a href="#多线程上下文切换的问题" class="headerlink" title="多线程上下文切换的问题"></a>多线程上下文切换的问题</h2><h4 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h4><p>一个程序运行多个线程本身是没有问题的，问题出现在多个线程访问一个共享资源</p><p>多个线程读共享资源也是没有问题的，<strong>但是多个线程对共享资源读写操作时，因为时间片切换的问题，会发生指令交错，就会出现问题</strong></p><p><em>一段代码块内，如果存在对共享资源的多线程读写操作，称这段代码块为临界区。</em></p><h4 id="竞态条件"><a href="#竞态条件" class="headerlink" title="竞态条件"></a>竞态条件</h4><p>多个线程在临界区内执行，由于代码的执行序列不同而导致结果无法预测，称之为发生了竞态条件。</p><h4 id="应用互斥"><a href="#应用互斥" class="headerlink" title="应用互斥"></a>应用互斥</h4><p>为了避免临界区的竞态条件发生，有多种方法可以达到目的。</p><ul><li><p>阻塞式的解决方案：synchronized，Lock</p></li><li><p>非阻塞式的解决方案： 原子变量</p><p>synchronized俗称对象锁，采用互斥的方法，让同一时刻至多只有一个线程能够持有对象锁，其他线程想再获得这个对象锁，就会被阻塞住，这样就能保证拥有锁的线程可以安全的执行临界区内的代码，不用担心线程上下文切换。</p><p>synchronized实际上是用对象锁保证了临界区代码的原子性，临界区的代码对外是不可分割的，不会被线程切换打断。</p></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> r =<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Thread t1 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">                    r++;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        Thread t2 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">                    r--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">        t1.join();</span><br><span class="line">        t2.join();</span><br><span class="line">      System.out.println(<span class="string">&quot;r=&quot;</span>+r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">结果为：</span><br><span class="line">r=-<span class="number">423</span></span><br><span class="line">r=-<span class="number">615</span>。。。。。。</span><br><span class="line"></span><br><span class="line">这个代码就是多个线程读写了共享的资源 r。</span><br><span class="line">因为r++和r--操作，对应的底层代码有取数、加<span class="number">1</span>、存数的操作，所以，在执行到中途时，时间片可能用完，而切换为另一个线程，而线程保存当前的执行结果。如线程t1 执行到第二步，r=<span class="number">200</span>，然后等待存数，这时t2执行，r--，r应该为<span class="number">199</span>，但是在切换t1时，继续执行r=<span class="number">200</span>的存数操作，导致出错。</span><br></pre></td></tr></table></figure><h4 id="改进："><a href="#改进：" class="headerlink" title="改进："></a>改进：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class test &#123;</span><br><span class="line">    static int r &#x3D; 0;</span><br><span class="line">    public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">        Object object &#x3D; new Object();</span><br><span class="line">        Thread t1 &#x3D; new Thread(new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                for (int i &#x3D; 0; i &lt; 10000; i++) &#123;</span><br><span class="line">                    synchronized (object) &#123;</span><br><span class="line">                        r++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        Thread t2 &#x3D; new Thread(new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                for (int i &#x3D; 0; i &lt; 10000; i++) &#123;</span><br><span class="line">                    synchronized (object) &#123;</span><br><span class="line">                        r--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">        t1.join();</span><br><span class="line">        t2.join();</span><br><span class="line">        System.out.println(&quot;r&#x3D;&quot; + r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>其实synchronized要求锁住一个对象即可，在这段代码中，只要保证线程1和线程2之间由于锁住同一个对象，从而导致互斥即可，所以这里声明了一个object对象，使t1和t2形成互斥即可。</strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;多线程之等待、终止、临界问题&quot;&gt;&lt;a href=&quot;#多线程之等待、终止、临界问题&quot; class=&quot;headerlink&quot; title=&quot;多线程之等待、终止、临界问题&quot;&gt;&lt;/a&gt;多线程之等待、终止、临界问题&lt;/h1&gt;&lt;h2 id=&quot;两阶段终止问题&quot;&gt;&lt;a href=</summary>
+      
+    
+    
+    
+    
+    <category term="多线程" scheme="https://x-y-c.github.io/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://x-y-c.github.io/blog/2022/08/18/2020-09-29-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%AA%E8%AE%BA/"/>
+    <id>https://x-y-c.github.io/blog/2022/08/18/2020-09-29-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%AA%E8%AE%BA/</id>
+    <published>2022-08-18T06:59:20.492Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://i.loli.net/2020/09/29/8NK5UubSwfdBCjz.png" alt="绪论2.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/09/29/8NK5UubSwfdBCjz.png&quot; alt=&quot;绪论2.png&quot;&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="操作系统" scheme="https://x-y-c.github.io/blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://x-y-c.github.io/blog/2022/08/18/2020-08-04-python%E4%B8%AD%E6%89%93%E5%BC%80%E5%A4%9A%E4%B8%AA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/"/>
+    <id>https://x-y-c.github.io/blog/2022/08/18/2020-08-04-python%E4%B8%AD%E6%89%93%E5%BC%80%E5%A4%9A%E4%B8%AA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/</id>
+    <published>2022-08-18T06:59:20.492Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<p>python中打开多个文件，并使用索引的方式</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, (file1_line, file2_line) <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="built_in">zip</span>(file1, file2)):</span><br></pre></td></tr></table></figure><p>自己总是忘，做个小标记，日后补全~</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;python中打开多个文件，并使用索引的方式&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://x-y-c.github.io/blog/2022/08/18/2020-07-22-docker%E9%85%8D%E7%BD%AEminIO%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/"/>
+    <id>https://x-y-c.github.io/blog/2022/08/18/2020-07-22-docker%E9%85%8D%E7%BD%AEminIO%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/</id>
+    <published>2022-08-18T06:59:20.492Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="docker-配置minIO对象存储"><a href="#docker-配置minIO对象存储" class="headerlink" title="docker 配置minIO对象存储"></a>docker 配置minIO对象存储</h1><h3 id="minIO-是什么"><a href="#minIO-是什么" class="headerlink" title="minIO 是什么"></a>minIO 是什么</h3><p>MinIO 是一个基于Apache License v2.0开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。</p><p>MinIO是一个非常轻量的服务,可以很简单的和其他应用的结合，类似 NodeJS, Redis 或者 MySQL。</p><p>所以，对于图片视频等，可以使用minIO实现更方便的存储</p><h3 id="minIO的部署"><a href="#minIO的部署" class="headerlink" title="minIO的部署"></a>minIO的部署</h3><ul><li><p>作为一个存储服务，肯定要做到把上传的文件保存到主机中，如果仅仅保存到容器中，不进行数据卷的映射，会导致在docker停止后，数据全部丢失。</p></li><li><p>此外，作为存储服务器，需要有登录的用户名和密码，即<code>ACCESS_KEY</code> 和<code>SECRET_KEY</code>,这两项，可以在该容器启动时进行配置</p><h4 id="minIO的docker启动命令"><a href="#minIO的docker启动命令" class="headerlink" title="minIO的docker启动命令"></a>minIO的docker启动命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 9000:9000 \</span><br><span class="line">  --name minio1 \</span><br><span class="line">  -v &#x2F;mnt&#x2F;data:&#x2F;data \</span><br><span class="line">  -e &quot;MINIO_ACCESS_KEY&#x3D;AKIAIOSFODNN7EXAMPLE&quot; \</span><br><span class="line">  -e &quot;MINIO_SECRET_KEY&#x3D;wJalrXUtnFEMI&#x2F;K7MDENG&#x2F;bPxRfiCYEXAMPLEKEY&quot; \</span><br><span class="line">  minio&#x2F;minio server &#x2F;data</span><br></pre></td></tr></table></figure><ul><li><p>-p 为端口映射，即将本机的9000端口和docker启动的容器的9000端口做映射</p></li><li><p>–name 为指定该容器的名称为 minio1</p></li><li><p>-e 指定了secret_key和access_key</p></li><li><p>-v 是指将主机中的/mnt/data 目录映射到docker容器中的data目录</p></li><li><p>minio/minio server 是指定在容器中，上传的文件存储在容器的data目录，结合 上一步，可以知道，实际是存储在了本机的/mnt/data目录中。</p></li></ul></li></ul><p>通过该命令，可以完成部署，通过浏览器访问ip:9000端口，即可看到minIO的登录界面，用户名和密码为 access_key 和 secret_key </p><p>同时，minIO也兼容亚马逊S3的存储接口，可以通过接口进行文件的上传、返回地址等操作。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;docker-配置minIO对象存储&quot;&gt;&lt;a href=&quot;#docker-配置minIO对象存储&quot; class=&quot;headerlink&quot; title=&quot;docker 配置minIO对象存储&quot;&gt;&lt;/a&gt;docker 配置minIO对象存储&lt;/h1&gt;&lt;h3 id=&quot;m</summary>
+      
+    
+    
+    
+    
+    <category term="docker" scheme="https://x-y-c.github.io/blog/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>springboot使用外部配置文件</title>
+    <link href="https://x-y-c.github.io/blog/2020/05/31/2020-05-31-springboot%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/"/>
+    <id>https://x-y-c.github.io/blog/2020/05/31/2020-05-31-springboot%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</id>
+    <published>2020-05-31T00:00:00.000Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="springboot使用外部配置文件"><a href="#springboot使用外部配置文件" class="headerlink" title="springboot使用外部配置文件"></a>springboot使用外部配置文件</h1><h2 id="问题需求"><a href="#问题需求" class="headerlink" title="问题需求"></a>问题需求</h2><p>随着服务器增多，每次更换服务器或者更换数据库等，都会发生ip地址的改变，导致springboot的配置文件中保存的数据库地址，图片服务器地址失效，不得不重新打包，导致部署过程繁琐。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>springboot项目中指定了多个配置文件，通过<code>spring.profiles.active=dev</code>来指定配置文件。所以，使用外部同名配置文件来替换项目中的默认配置文件，就可以只重启服务完成配置信息的更改，而不用重新打包项目。</p><h2 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h2><p>通过查阅资料，发现springboot配置文件的优先级。</p><p>1、最高优先级是 项目.jar 的同一个文件夹中的config中的同名配置文件，如上述的active=dev，则配置文件的名称应为：application-dev.properties ，如果存在该配置文件，则优先加载该配置文件。</p><p>2、优先级第二高的是 项目.jar 的同一文件夹中的配置文件，如上述的active=dev，则配置文件的名称为：application-dev.properties，</p><p>3、优先级第三高的是 项目中自带的配置文件。</p><p><strong>配置文件的优先级，从第一到第三级，加载，如果config中存在同名配置文件，则会加载该配置文件，如果最高优先级和第二优先级都不存在的情况下，则加载默认的配置文件。</strong></p><h2 id="测试及说明"><a href="#测试及说明" class="headerlink" title="测试及说明"></a>测试及说明</h2><ol><li><p>首先，在项目中的application-dev.properties中添加 test=dev，在项目中编写一个测试接口，返回test的值。</p></li><li><p>将项目打包后，放在 d盘的data目录中。</p></li><li><p>启动项目，并访问测试接口 ，可以看到 输出的结果为 dev</p></li><li><p>在同级目录下，新建一个application-dev.properties，将test=dev11223344,重启项目，测试接口，可以看到 输出的结果为 dev11223344</p><p><strong>可以看到第二优先级的配置文件将原始的配置文件覆盖了</strong></p></li><li><p>同理，在该文件夹中新建一个config文件夹，在config文件夹中，我们新建一个同名配置文件，并将test=devINconfig，重启项目，并测试接口，可以看到输出的结果为devINconfig。和预期结果相同。</p></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;springboot使用外部配置文件&quot;&gt;&lt;a href=&quot;#springboot使用外部配置文件&quot; class=&quot;headerlink&quot; title=&quot;springboot使用外部配置文件&quot;&gt;&lt;/a&gt;springboot使用外部配置文件&lt;/h1&gt;&lt;h2 id=&quot;问</summary>
+      
+    
+    
+    
+    
+    <category term="后端" scheme="https://x-y-c.github.io/blog/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用spring-data-JPA分页</title>
+    <link href="https://x-y-c.github.io/blog/2020/05/16/2020-05-16-spring-data-jpa%E5%88%86%E9%A1%B5/"/>
+    <id>https://x-y-c.github.io/blog/2020/05/16/2020-05-16-spring-data-jpa%E5%88%86%E9%A1%B5/</id>
+    <published>2020-05-16T00:00:00.000Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="使用Spring-data-JPA查询数据并分页"><a href="#使用Spring-data-JPA查询数据并分页" class="headerlink" title="使用Spring-data-JPA查询数据并分页"></a>使用Spring-data-JPA查询数据并分页</h1><h2 id="1、使用JPA-自带的查询接口实现分页"><a href="#1、使用JPA-自带的查询接口实现分页" class="headerlink" title="1、使用JPA 自带的查询接口实现分页"></a>1、使用JPA 自带的查询接口实现分页</h2><p>如果查询的数据是一张数据表中的数据，那么可以使用JPA自带的查询接口进行查询，例如 有一个表结构为：user</p><table><thead><tr><th>id</th><th>name</th><th>gender</th></tr></thead><tbody><tr><td>001</td><td>tom</td><td>male</td></tr><tr><td>002</td><td>jerry</td><td>male</td></tr><tr><td>003</td><td>Mary</td><td>female</td></tr></tbody></table><p>如果查询这张用户表中数据，并且返回分页的形式</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Page&lt;User&gt;findbyId(Pageable pageable,Integer id);</span><br></pre></td></tr></table></figure><h2 id="2、使用-Query方式，编写SQL语句进行查询并分页"><a href="#2、使用-Query方式，编写SQL语句进行查询并分页" class="headerlink" title="2、使用@Query方式，编写SQL语句进行查询并分页"></a>2、使用@Query方式，编写SQL语句进行查询并分页</h2><p>如果需要查询的数据，是两张以上的表，并且需要返回分页的形式，这时候，JPA自带的分页方式就变得不好用了，这时候比较好的查询方式是编写SQL语句，用@Query注解</p><p>例如在user表的基础上，有一张成绩表，score</p><table><thead><tr><th>id</th><th>score</th></tr></thead><tbody><tr><td>001</td><td>100</td></tr><tr><td>002</td><td>50</td></tr><tr><td>003</td><td>70</td></tr></tbody></table><p>如果需要查询姓名和成绩并且以分页的方式返回</p><p>用Query方法查询的方式如下：</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Query</span>(<span class="keyword">value</span><span class="operator">=</span>&quot;select  t1.name&quot; <span class="operator">+</span></span><br><span class="line">            &quot;student_grade,password from user t1  join score t2 on t1.id= t2.id&quot;,</span><br><span class="line">            countQuery<span class="operator">=</span>&quot;select count(*) from user t1  join score t2 on t1.id= t2.id &quot;,nativeQuery <span class="operator">=</span> <span class="literal">true</span>)</span><br></pre></td></tr></table></figure><p>以上需要注意的地方是，这个查询有两个部分，首先是带join的SQL联表查询，此外，需要注意的是，必须要添加 countQuery =“ ”，在其中编写count 的SQL语句，count语句的目的，是为了让分页组件能够知道数据的总数，这样，才能够实现分页的效果</p><h4 id="以下为注意事项"><a href="#以下为注意事项" class="headerlink" title="以下为注意事项"></a>以下为注意事项</h4><p>1、为了保证SQL的正确查询，需要给查询的表添加一个别名，在没有别名的情况下，有时候会报错</p><p>2、countQuery是必须带的一个参数，不然会报SQL查询失败的错误</p><p>3、至于为什么要加countQuery，除了解释为查询数据总数为了分页以外，没有找到一个较为官方的解释，查阅了好多资料，几乎没有发现好的解答，直到看到Stack Overflow上的一条回复</p><blockquote><p>You can use pagination with a native query. It is documented here: <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#_native_queries">https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#_native_queries</a></p><p>“<em>You can however use native queries for pagination by specifying the count query yourself: Example 59. Declare native count queries for pagination at the query method using @Query</em>“</p></blockquote><p>结合这个解释和分页的逻辑分析，基本可以解释这个问题。</p><p>4、此外，@Query查询和@countQuery查询，必须是相同的查询条件，或者可以解释为 @countQuery到的总数，必须和Query到的数据数量相等。</p><p>5、通过@Query编写的SQL语句，字段的顺序要和Java中对象的变量的顺序相同，这样才能保证ORM后的结果匹配。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;使用Spring-data-JPA查询数据并分页&quot;&gt;&lt;a href=&quot;#使用Spring-data-JPA查询数据并分页&quot; class=&quot;headerlink&quot; title=&quot;使用Spring-data-JPA查询数据并分页&quot;&gt;&lt;/a&gt;使用Spring-data-</summary>
+      
+    
+    
+    
+    
+    <category term="后端" scheme="https://x-y-c.github.io/blog/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>聊聊docer(四)-docker中添加ssh服务</title>
+    <link href="https://x-y-c.github.io/blog/2020/04/05/2020-04-05-%E8%81%8A%E8%81%8Adocer(4)/"/>
+    <id>https://x-y-c.github.io/blog/2020/04/05/2020-04-05-%E8%81%8A%E8%81%8Adocer(4)/</id>
+    <published>2020-04-05T00:00:00.000Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="聊聊docker（四）"><a href="#聊聊docker（四）" class="headerlink" title="聊聊docker（四）"></a>聊聊docker（四）</h1><h3 id="docker添加ssh服务"><a href="#docker添加ssh服务" class="headerlink" title="docker添加ssh服务"></a>docker添加ssh服务</h3><h4 id="0、说明："><a href="#0、说明：" class="headerlink" title="0、说明："></a>0、说明：</h4><p>网易蜂巢提供了 带有openssh 服务的ubuntu系统</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull hub.c.163.com&#x2F;public&#x2F;ubuntu:16.04-tools</span><br></pre></td></tr></table></figure><p>可以通过该命令进行镜像的下载；</p><h4 id="1、基于官方的ubuntu镜像添加ssh服务"><a href="#1、基于官方的ubuntu镜像添加ssh服务" class="headerlink" title="1、基于官方的ubuntu镜像添加ssh服务"></a>1、基于官方的ubuntu镜像添加ssh服务</h4><h6 id="1-1、下载官方镜像"><a href="#1-1、下载官方镜像" class="headerlink" title="1.1、下载官方镜像"></a>1.1、下载官方镜像</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu</span><br></pre></td></tr></table></figure><h6 id="1-2、运行容器"><a href="#1-2、运行容器" class="headerlink" title="1.2、运行容器"></a>1.2、运行容器</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name ubuntu -t -i -d -p 3316:22 ubuntu</span><br></pre></td></tr></table></figure><p>即 运行ubuntu镜像，并指定镜像名称为ubuntu，</p><p>-d 以后台方式运行，启动成功后会返回该镜像的hash</p><p>-i: 以交互模式运行容器，保证容器中STDIN是开启的。通常与 -t 同时使用； </p><p>-t: 为容器重新分配一个伪tty终端，通常与 -i 同时使用； </p><p>-p 是将 主机的3316端口映射到docker ubuntu镜像的22端口（22为ssh服务的端口）</p><h6 id="1-3、查看启动状态"><a href="#1-3、查看启动状态" class="headerlink" title="1.3、查看启动状态"></a>1.3、查看启动状态</h6><p>通过运行docker ps可以查看该镜像的运行状态；如果运行成功，那么可以看到返回的列表中存在该容器的信息</p><h6 id="1-4-、进入容器，安装ssh服务"><a href="#1-4-、进入容器，安装ssh服务" class="headerlink" title="1.4 、进入容器，安装ssh服务"></a>1.4 、进入容器，安装ssh服务</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -t -i ubuntu &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure><p>这里，-i 后边，可以是 ubuntu镜像的名字，即步骤 1.2中 –name后面取的名字，也可以是 通过docker ps查看到的docker的hash值 </p><p>/bin/bash 是让ubuntu进入命令行</p><p>在进入容器后，所执行的操作，和直接操作ubuntu系统类似</p><p>首先 通过 <code>apt-get update</code> 更新源</p><p>然后 通过 <code>apt-get install openssh-client</code> 安装ssh客户端程序(openssh-server会依赖openssh-client，部分ubuntu系统中已经预先安装了openssh-client)</p><p>然后 通过<code>apt-get install openssh-server</code>安装ssh服务程序</p><h6 id="以上，完成了ssh的安装"><a href="#以上，完成了ssh的安装" class="headerlink" title="以上，完成了ssh的安装"></a>以上，完成了ssh的安装</h6><p>在安装后，通过 <code>/etc/init.d/ssh start</code> 将ssh服务启动，如果安装并且启动成功，通过<code>ps -e|grep ssh</code>  可以查看到存在ssh的进程</p><h6 id="在测试ssh可以正常启动后，需要配置-sshd-config的文件"><a href="#在测试ssh可以正常启动后，需要配置-sshd-config的文件" class="headerlink" title="在测试ssh可以正常启动后，需要配置 sshd_config的文件"></a>在测试ssh可以正常启动后，需要配置 sshd_config的文件</h6><p>首先安装vim</p><p><code>apt-get install vim</code></p><p>然后编辑sshd_config 文件</p><p><code>vim /etc/ssh/sshd_config</code> </p><p>需要添加 <code>PermitRootLogin yes</code> 即允许以root用户的方式登录</p><p><img src="https://i.loli.net/2020/04/05/DbTh53FLksfH2ne.png" alt="1697474-20190826162842046-237696209.png"></p><p>完成并保存后，对ssh服务重启，<code>service ssh restart</code></p><p>因为要通过root 用户登录，所以要设置root用户的密码</p><p><code>passwd root</code>命令可以设置root密码</p><h6 id="在完成以上操作后，就可以通过ip：3316端口-进行ssh的连接了"><a href="#在完成以上操作后，就可以通过ip：3316端口-进行ssh的连接了" class="headerlink" title="在完成以上操作后，就可以通过ip：3316端口 进行ssh的连接了"></a>在完成以上操作后，就可以通过ip：3316端口 进行ssh的连接了</h6>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;聊聊docker（四）&quot;&gt;&lt;a href=&quot;#聊聊docker（四）&quot; class=&quot;headerlink&quot; title=&quot;聊聊docker（四）&quot;&gt;&lt;/a&gt;聊聊docker（四）&lt;/h1&gt;&lt;h3 id=&quot;docker添加ssh服务&quot;&gt;&lt;a href=&quot;#dock</summary>
+      
+    
+    
+    
+    
+    <category term="docker" scheme="https://x-y-c.github.io/blog/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>聊聊docker(三)-docker基础命令</title>
+    <link href="https://x-y-c.github.io/blog/2020/03/15/2020-03-15-docker(03)/"/>
+    <id>https://x-y-c.github.io/blog/2020/03/15/2020-03-15-docker(03)/</id>
+    <published>2020-03-15T00:00:00.000Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="聊聊docker（三）"><a href="#聊聊docker（三）" class="headerlink" title="聊聊docker（三）"></a>聊聊docker（三）</h1><h3 id="docker基本使用流程"><a href="#docker基本使用流程" class="headerlink" title="docker基本使用流程"></a>docker基本使用流程</h3><h4 id="一、获取镜像"><a href="#一、获取镜像" class="headerlink" title="一、获取镜像"></a>一、获取镜像</h4><p>Docker pull NAME[:tag]</p><p>对于docker镜像来说，如果不显式的指定TAG，会默认选择latest标签，即下载最新版本的镜像。</p><p>查看镜像信息：</p><p>docker images 可以列出本地主机上已有的镜像；</p><p>docker inspect 可以获取该镜像的详细信息</p><p>docker rmi IMAGE 可以删除镜像，IMAGE 可以为标签或ID </p><h4 id="二、创建镜像："><a href="#二、创建镜像：" class="headerlink" title="二、创建镜像："></a>二、创建镜像：</h4><p>docker commit </p><p>-a 作者信息；</p><p>-m 提交信息</p><p>-p 提交时暂停容器运行</p><p>example：</p><p>有个ubuntu镜像；id是 a925xxxx；这时基于这个镜像做了一些修改，可以把新的提交上去，newName是新的文件名)</p><p>docker commit -m ‘’提交信息” -a “作者” a925xxx newName</p><p>如果没有错，会返回新的镜像的id；</p><h4 id="三、导出导入镜像："><a href="#三、导出导入镜像：" class="headerlink" title="三、导出导入镜像："></a>三、导出导入镜像：</h4><p>将docker镜像导出的本地文件：</p><p>docker save 命令；</p><p>example ：</p><p>docker save -o ubuntu1604.tar（这是导出的文件名）ubuntu:16.04（这是docker镜像的name：tag）</p><h5 id="导入镜像："><a href="#导入镜像：" class="headerlink" title="导入镜像："></a>导入镜像：</h5><p>docker load 命令 </p><p>docker load –input ubuntu1604.tar</p><h5 id="上传镜像："><a href="#上传镜像：" class="headerlink" title="上传镜像："></a>上传镜像：</h5><p>docker push 命令：</p><p>docker push  userName/imageName:tag   </p><p>userName 是 dockerhub上的用户名，因为要上传到dockerhub上；</p><p>imageName是要上传的镜像名，tag 是自己起的便签，比如说 v1.0</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;聊聊docker（三）&quot;&gt;&lt;a href=&quot;#聊聊docker（三）&quot; class=&quot;headerlink&quot; title=&quot;聊聊docker（三）&quot;&gt;&lt;/a&gt;聊聊docker（三）&lt;/h1&gt;&lt;h3 id=&quot;docker基本使用流程&quot;&gt;&lt;a href=&quot;#docke</summary>
+      
+    
+    
+    
+    
+    <category term="docker" scheme="https://x-y-c.github.io/blog/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx从入门到放弃-gzip压缩</title>
+    <link href="https://x-y-c.github.io/blog/2020/02/17/2020-02-17-nginx%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%832/"/>
+    <id>https://x-y-c.github.io/blog/2020/02/17/2020-02-17-nginx%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%832/</id>
+    <published>2020-02-17T00:00:00.000Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="nginx开启gzip压缩"><a href="#nginx开启gzip压缩" class="headerlink" title="nginx开启gzip压缩"></a>nginx开启gzip压缩</h2><h5 id="关于gzip简介："><a href="#关于gzip简介：" class="headerlink" title="关于gzip简介："></a>关于gzip简介：</h5><p>   GZIP最早由Jean-loup Gailly和Mark Adler创建，用于UNⅨ系统的<a href="https://baike.baidu.com/item/%E6%96%87%E4%BB%B6%E5%8E%8B%E7%BC%A9">文件压缩</a>。我们在<a href="https://baike.baidu.com/item/Linux">Linux</a>中经常会用到后缀为.gz的文件，它们就是GZIP格式的。现今已经成为Internet 上使用非常普遍的一种<a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9">数据压缩</a>格式，或者说一种文件格式。</p><p>HTTP协议上的GZIP编码是一种用来改进WEB应用程序性能的技术。大流量的WEB站点常常使用GZIP<a href="https://baike.baidu.com/item/%E5%8E%8B%E7%BC%A9%E6%8A%80%E6%9C%AF">压缩技术</a>来让用户感受更快的速度。这一般是指WWW服务器中安装的一个功能，当有人来访问这个服务器中的网站时，服务器中的这个功能就将网页内容压缩后传输到来访的电脑浏览器中显示出来.一般对纯文本内容可压缩到原大小的40%.这样传输就快了，效果就是你点击网址后会很快的显示出来.当然这也会增加服务器的负载. 一般服务器中都安装有这个功能模块的。</p><p>通过这个简介可以看到，通过开启gzip可以对网页的资源进行压缩，以实现更快的传输速度。</p><h5 id="nginx中开启gzip"><a href="#nginx中开启gzip" class="headerlink" title="nginx中开启gzip"></a>nginx中开启gzip</h5><p>在nginx中，支持gzip压缩，同时，默认状态下gzip是关闭状态的。</p><p>以下为nginx配置文件：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> ##</span><br><span class="line">        # Gzip Settings</span><br><span class="line">        ##</span><br><span class="line"></span><br><span class="line">        gzip on;   &#x2F;&#x2F;开启状态，</span><br><span class="line">        gzip_disable &quot;msie6&quot;; &#x2F;&#x2F;对ie6禁用gzip压缩</span><br><span class="line"></span><br><span class="line">        gzip_vary on; &#x2F;&#x2F;增加响应头”Vary: Accept-Encoding”</span><br><span class="line">        gzip_proxied any; &#x2F;&#x2F;一般在反向代理中启用，any参数代表无条件压缩所有结果数据</span><br><span class="line">        gzip_comp_level 6; &#x2F;&#x2F;设置gzip压缩级别，级别越底压缩速度越快文件压缩比越小，反之速度越慢文件压缩比越大</span><br><span class="line">        gzip_buffers 16 8k; &#x2F;&#x2F;设置用于处理请求压缩的缓冲区数量和大小。比如32 4K表示按照内存页（one memory page）大小以4K为单位（即一个系统中内存页为4K），申请32倍的内存空间。建议此项不设置，使用默认值。</span><br><span class="line">        gzip_http_version 1.1; &#x2F;&#x2F;用于识别http协议的版本，早期的浏览器不支持gzip压缩，用户会看到乱码，所以为了支持前期版本加了此选项。默认在http&#x2F;1.0的协议下不开启gzip压缩。</span><br><span class="line">        gzip_types text&#x2F;plain text&#x2F;css application&#x2F;json application&#x2F;javascript text&#x2F;xml application&#x2F;xml application&#x2F;xml+rss text&#x2F;javascript;</span><br><span class="line">&#x2F;&#x2F;设置需要压缩的MIME类型,如果不在设置类型范围内的请求不进行压缩</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>其实这些配置文件在nginx中都是存在的，只是默认注释掉，如果想要开启gzip的压缩，把相关的注释信息删除掉，根据处理器和带宽调整一下压缩级别，基本上就可以了。</p><h5 id="实际测试："><a href="#实际测试：" class="headerlink" title="实际测试："></a>实际测试：</h5><p>在 2G内存，1M带宽的服务器测试结果如下：</p><p><img src="https://i.loli.net/2020/02/16/obfa7F62YV1r5vZ.png" alt="微信图片_20200216164349.png"></p><p><img src="https://i.loli.net/2020/02/16/3G9Es6elvbfWPiS.png" alt="微信图片_20200216164403.png"></p><p>在chrome浏览器中，访问网页，禁用缓存，所有资源(js,html等)共1.9MB，</p><p>在未开启gzip情况下，传输量为 1.9Mb，完整加载整个页面用时9.09s，</p><p>在开启gzip情况下，传输量为 501KB,完整加载整个页面用时1.93秒，通过这个简单测试，可以看出开启gzip压缩的情况下，提升非常明显。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;nginx开启gzip压缩&quot;&gt;&lt;a href=&quot;#nginx开启gzip压缩&quot; class=&quot;headerlink&quot; title=&quot;nginx开启gzip压缩&quot;&gt;&lt;/a&gt;nginx开启gzip压缩&lt;/h2&gt;&lt;h5 id=&quot;关于gzip简介：&quot;&gt;&lt;a href=&quot;#</summary>
+      
+    
+    
+    
+    
+    <category term="nginx" scheme="https://x-y-c.github.io/blog/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx从入门到放弃-基础1</title>
+    <link href="https://x-y-c.github.io/blog/2020/02/16/2020-02-16-nginx%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/"/>
+    <id>https://x-y-c.github.io/blog/2020/02/16/2020-02-16-nginx%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/</id>
+    <published>2020-02-16T00:00:00.000Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<p> 今天尝试了思维导图，发现确实是一个挺好玩挺好看的东西，比文字简洁多了。</p><h1 id="Nginx从入门到放弃"><a href="#Nginx从入门到放弃" class="headerlink" title="Nginx从入门到放弃"></a>Nginx从入门到放弃</h1><p>先以一张思维导图来表示一下nginx的基础。</p><h2 id="整体概述"><a href="#整体概述" class="headerlink" title="整体概述"></a>整体概述</h2><p><img src="https://i.loli.net/2020/02/16/Ai2C4zUyGxTjH3g.png" alt="nginx.png"></p><h3 id="配置指令块"><a href="#配置指令块" class="headerlink" title="配置指令块"></a>配置指令块</h3><p>在nginx.conf配置文件中，可以把配置文件分为4块，http块是最高级的模块，http的传输协议、版本等，都在http块中；</p><p>server块，用来配置虚拟主机的相关参数，一个http中可以有多个server。</p><p>location块：配置请求的路由，以及各种页面的处理情况。</p><h3 id="nginx的关注点"><a href="#nginx的关注点" class="headerlink" title="nginx的关注点"></a>nginx的关注点</h3><p>在配置或使用nginx的过程中，首先要关注以下几个部分:</p><p>nginx.conf配置文件，通过配置文件，从而实现对nginx软件整体行为的控制；</p><p>access.log nginx的请求日志，默认记录了nginx的所有请求信息。可以用于分析或者监控</p><p>error.log nginx的错误日志，出错的日志信息会保存在该文件中，可以用于分析问题。</p><h2 id="nginx命令行"><a href="#nginx命令行" class="headerlink" title="nginx命令行"></a>nginx命令行</h2><ul><li>nginx -h 显示nginx帮助信息</li><li>nginx -c 用于使用指定的配置文件</li><li>nginx -p 指定运行目录</li><li>nginx -s 发送信号<ul><li>nginx -s stop 立即停止nginx服务</li><li>nginx -s quit 优雅的停止nginx服务（即处理完请求后再停止）</li><li>nginx -s reload 重载配置文件</li><li>nginx -s reopen 重新记录日志(切割日志)</li></ul></li><li>nginx - t -T 检查nginx的配置文件的语法</li><li>nginx -v -V 显示nginx的编译信息，版本信息等</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt; 今天尝试了思维导图，发现确实是一个挺好玩挺好看的东西，比文字简洁多了。&lt;/p&gt;
+&lt;h1 id=&quot;Nginx从入门到放弃&quot;&gt;&lt;a href=&quot;#Nginx从入门到放弃&quot; class=&quot;headerlink&quot; title=&quot;Nginx从入门到放弃&quot;&gt;&lt;/a&gt;Nginx从入门到</summary>
+      
+    
+    
+    
+    
+    <category term="nginx" scheme="https://x-y-c.github.io/blog/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>聊聊docker(二)-基本使用流程</title>
+    <link href="https://x-y-c.github.io/blog/2020/02/09/2020-02-09-docker(2)/"/>
+    <id>https://x-y-c.github.io/blog/2020/02/09/2020-02-09-docker(2)/</id>
+    <published>2020-02-09T00:00:00.000Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="聊聊docker（二）"><a href="#聊聊docker（二）" class="headerlink" title="聊聊docker（二）"></a>聊聊docker（二）</h1><h3 id="docker基本使用流程"><a href="#docker基本使用流程" class="headerlink" title="docker基本使用流程"></a>docker基本使用流程</h3><h4 id="一、获取docker镜像"><a href="#一、获取docker镜像" class="headerlink" title="一、获取docker镜像"></a>一、获取docker镜像</h4><p>想要使用docker，首先要把docker镜像下载(pull)到本地，国内有很多docker仓库，这里以dockerhub为例；</p><p>在dockerhub中，选择好需要的镜像，使用docker pull xxx:aaa xxx代表镜像名，aaa代表tag，如果不填写tag，则默认会下载最新的镜像到本地。 （dockerhub上有个很好玩的东西，2048小游戏，这里以这个为例子演示）</p><p><img src="https://i.loli.net/2020/02/09/fhYLclKNb1UjmDs.png" alt="1581255907_1_.png"></p><p>可以看到右侧为docker 的镜像下载命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull alexwhen&#x2F;docker-2048</span><br></pre></td></tr></table></figure><p>将这个命令放在命令行中运行；</p><p><img src="https://i.loli.net/2020/02/09/Yosqh5Mk9U1wXOa.png" alt="1581256097_1_.png"></p><p>对应的镜像会自动下载完成；</p><h4 id="二、运行docker镜像"><a href="#二、运行docker镜像" class="headerlink" title="二、运行docker镜像"></a>二、运行docker镜像</h4><h5 id="docker-images-查看镜像"><a href="#docker-images-查看镜像" class="headerlink" title="docker images 查看镜像"></a>docker images 查看镜像</h5><p>在镜像下载完成后，通过docker images 可以查看本地已经存在的镜像；</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">alexwhen&#x2F;docker-2048   latest              7929bcd70e47        4 years ago         8.02MB</span><br></pre></td></tr></table></figure><p>可以看到，已经列出了刚刚下载的镜像；</p><h5 id="docker-run-运行镜像"><a href="#docker-run-运行镜像" class="headerlink" title="docker run 运行镜像"></a>docker run 运行镜像</h5><p>docker run 可以跟很多参数，最后跟镜像名称，常见的参数</p><ul><li><p>-i :交互式操作</p></li><li><p>-t :打开docker的终端</p></li><li><p>-d: 后台运行，</p></li><li><p>-p: 指定端口，80：8080 指的是把docker的8080端口绑定到主机的80端口上。</p><p>这里选择后台运行，将docker的80端口，映射到主机的2048端口，并且后台运行，即</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p:2048:80 alexwhen&#x2F;docker-2048</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p:2048:80 alexwhen&#x2F;docker-2048</span><br><span class="line">ee44b3680cc33c7223a0b32ca0f52d9eae1c61630942c7c4e5f77d8d727fc4ae</span><br></pre></td></tr></table></figure><p>​    运行完成后，docker会返回一串id，并且回到终端状态。</p><p>这时候，打开ip：2048 ，就可以看到 2048游戏已经就绪了。<img src="https://i.loli.net/2020/02/09/FkUp8ePAQjLhNu3.png" alt="image.png"></p></li></ul><p>其他的镜像，也是相同的道理，在启动成功后，对应的端口，就可以提供相应的功能，如nginx，tomcat 等等。</p><h4 id="停止docker"><a href="#停止docker" class="headerlink" title="停止docker"></a>停止docker</h4><p>docker stop &lt;容器id&gt;</p><p>即刚才启动时，返回的id；</p><p>在停止时，只需要输入id的一部分（可以区分开其他容器）就可以</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;聊聊docker（二）&quot;&gt;&lt;a href=&quot;#聊聊docker（二）&quot; class=&quot;headerlink&quot; title=&quot;聊聊docker（二）&quot;&gt;&lt;/a&gt;聊聊docker（二）&lt;/h1&gt;&lt;h3 id=&quot;docker基本使用流程&quot;&gt;&lt;a href=&quot;#docke</summary>
+      
+    
+    
+    
+    
+    <category term="docker" scheme="https://x-y-c.github.io/blog/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>聊聊docker（一）</title>
+    <link href="https://x-y-c.github.io/blog/2020/01/29/2020-01-29-docker(1)/"/>
+    <id>https://x-y-c.github.io/blog/2020/01/29/2020-01-29-docker(1)/</id>
+    <published>2020-01-29T00:00:00.000Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="聊聊docker-一"><a href="#聊聊docker-一" class="headerlink" title="聊聊docker(一)"></a>聊聊docker(一)</h2><h3 id="docker是什么"><a href="#docker是什么" class="headerlink" title="docker是什么"></a>docker是什么</h3><p> Docker 是一个<a href="https://baike.baidu.com/item/%E5%BC%80%E6%BA%90/246339">开源</a>的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 <a href="https://baike.baidu.com/item/Linux">Linux</a>或Windows 机器上，也可以实现<a href="https://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E5%8C%96/547949">虚拟化</a>。容器是完全使用<a href="https://baike.baidu.com/item/%E6%B2%99%E7%AE%B1/393318">沙箱</a>机制，相互之间不会有任何接口。 </p><h3 id="docker用途"><a href="#docker用途" class="headerlink" title="docker用途"></a>docker用途</h3><p>没查到，说说个人的理解吧。</p><p>首先，容器和隔离机制，通过这两个词，我们可以看到，一些不安全的项目，比如说 oj中用户提交的代码呀，等等。容器，dockerhub上提供了很多nice的镜像，比如nginx，tomcat，mysql等等，有了docker，可以直接pull对应的镜像下来，在docker中运行，省去了本机部署的困难（windows安装部署太费劲了）。</p><p>除此以外，还可以基于dockerhub上的基础镜像来封装适合自己的功能更加强大的镜像。并且发布到dockerhub上，方便以后的迁移和部署。很多时候，由于操作系统不同，软件版本不同，导致本机运行通过的代码无法在其他机器上运行。有了docker，这个问题也解决了。</p><h3 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h3><p>其实这个还蛮惊喜，以前windows上安装docker，非常繁琐，而且还需要vmbox虚拟机，在最近一次的安装中，发现docker解决了这个问题，直接下载一个docker的exe安装包，一路下一步就ok了，甚至安装完成后还自带docker的管理界面。</p><h3 id="docker练习"><a href="#docker练习" class="headerlink" title="docker练习"></a>docker练习</h3><p>可能有的人会说，docker还要安装，太费劲了吧。<del>那java环境也得安装啊，ide也得安装啊，一直下一步就完事了，有啥费劲的</del>，好消息来了，最近看一个教程，提到了一个免费的docker运行网站，<a href="https://labs.play-with-docker.com/">play-with-docker</a>，</p><p><img src="https://i.loli.net/2020/01/30/1arOR6pj9ZVLgTv.png" alt="docker.PNG"></p><p><img src="https://i.loli.net/2020/01/30/x9Q8DJZIyd4XOkT.png" alt="docker02.png"></p><p>有效期四个小时，基本上够用了，关键是，不用安装。</p><h5 id="下一节，将结合项目，聊聊docker实际中的应用。"><a href="#下一节，将结合项目，聊聊docker实际中的应用。" class="headerlink" title="下一节，将结合项目，聊聊docker实际中的应用。"></a>下一节，将结合项目，聊聊docker实际中的应用。</h5>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;聊聊docker-一&quot;&gt;&lt;a href=&quot;#聊聊docker-一&quot; class=&quot;headerlink&quot; title=&quot;聊聊docker(一)&quot;&gt;&lt;/a&gt;聊聊docker(一)&lt;/h2&gt;&lt;h3 id=&quot;docker是什么&quot;&gt;&lt;a href=&quot;#docker是什么&quot;</summary>
+      
+    
+    
+    
+    
+    <category term="docker" scheme="https://x-y-c.github.io/blog/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue父组件调用子组件</title>
+    <link href="https://x-y-c.github.io/blog/2020/01/13/2020-01-13-vue%E7%88%B6%E7%BB%84%E4%BB%B6%E8%B0%83%E7%94%A8%E5%AD%90%E7%BB%84%E4%BB%B6/"/>
+    <id>https://x-y-c.github.io/blog/2020/01/13/2020-01-13-vue%E7%88%B6%E7%BB%84%E4%BB%B6%E8%B0%83%E7%94%A8%E5%AD%90%E7%BB%84%E4%BB%B6/</id>
+    <published>2020-01-13T19:42:21.000Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="vue父组件调用子组件"><a href="#vue父组件调用子组件" class="headerlink" title="vue父组件调用子组件"></a>vue父组件调用子组件</h1><p>感觉被这个问题困扰了很久，在vue的项目中，通过router翻页后，codeMirror组件中的数据不会恢复初始化。</p><p>一度以为就要放弃了，在沉寂了好久之后，终于想到，在项目的codeMirror子组件中，有reset()方法，所以，如果能够在翻页时调用这个reset方法，就可以解决这个问题。</p><p>重新思考了这个问题，发现通过watch函数，可以实现监听页面路由的变化。因此，在路由变化时完成调用就可以。</p><p>一般子组件在父组件中被调用， 如果想要父组件调用子组件的方法，</p><p>（1）首先要通过ref 添加一个占位。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Exam ref=<span class="string">&quot;test&quot;</span> v-<span class="keyword">for</span>=<span class="string">&quot;(list,index) in examInfo&quot;</span></span><br><span class="line">        :title=<span class="string">&quot;list.title&quot;</span></span><br><span class="line">        :question=<span class="string">&quot;list.question&quot;</span></span><br><span class="line">        :index=<span class="string">&quot;-1&quot;</span></span><br><span class="line">        :id=<span class="string">&quot;list.id&quot;</span></span><br><span class="line">        :customBh=<span class="string">&quot;list.customBh&quot;</span></span><br><span class="line">        :isProgramBlank=<span class="string">&quot;list.isProgramBlank&quot;</span></span><br><span class="line">        :src=<span class="string">&quot;list.src&quot;</span></span><br><span class="line">        :code-history=<span class="string">&quot;list.codeHistory&quot;</span></span><br><span class="line">        :score=<span class="string">&quot;list.score&quot;</span>&gt;</span><br><span class="line">  &lt;/Exam&gt;</span><br></pre></td></tr></table></figure><p>这里把Exam子组件声明为ref。</p><p>（2）调用 通过this.$refs.test.reset() 即可完成对子组件中方法的调用。、</p><p>this.$ref.test   ===&gt;test是上述的ref中声明的占位名称。</p><p>.reset() 是Exam子组件中的方法。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">resetExamCode</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">         <span class="built_in">this</span>.$nextTick(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">           <span class="built_in">this</span>.$refs.test[<span class="number">0</span>].reset()</span><br><span class="line">           <span class="built_in">console</span>.log(<span class="string">&quot;it works&quot;</span>)</span><br><span class="line">         &#125;)</span><br><span class="line">         &#125;,</span><br></pre></td></tr></table></figure><p>本以为这样的调用就可以完成任务，但是还是想的太简单了。</p><p>（1）子组件中必须用<div></div>标签包裹。</p><p><em>这一点，很多文章中 都有提到</em></p><p>（2）如果父组件页面很复杂，需要考虑子组件方法的调用时机，在某些情况下，甚至会出现因为未渲染完成而导致子组件方法调用失败。</p><p>通过查询资料，发现vue中提供了对应的判断方法。</p><p>this.$nextTick()=&gt;{} 方法，是vue回调函数，可以在页面加载完成后执行{}中的方法。</p><p>（3）以为有这两个就够了吗？nonono。因为项目中使用了v-for循环，所以，Exam组件其实是个组件数组。（虽然数组中只有一个元素）。但是还是要声明：this.$refs.test[0].xxxxx.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;vue父组件调用子组件&quot;&gt;&lt;a href=&quot;#vue父组件调用子组件&quot; class=&quot;headerlink&quot; title=&quot;vue父组件调用子组件&quot;&gt;&lt;/a&gt;vue父组件调用子组件&lt;/h1&gt;&lt;p&gt;感觉被这个问题困扰了很久，在vue的项目中，通过router翻页后，</summary>
+      
+    
+    
+    
+    
+    <category term="vue" scheme="https://x-y-c.github.io/blog/tags/vue/"/>
+    
+    <category term="前端" scheme="https://x-y-c.github.io/blog/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue全局变量</title>
+    <link href="https://x-y-c.github.io/blog/2020/01/13/2020-01-13-vue%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/"/>
+    <id>https://x-y-c.github.io/blog/2020/01/13/2020-01-13-vue%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/</id>
+    <published>2020-01-13T00:00:00.000Z</published>
+    <updated>2022-08-18T06:59:20.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="vue全局变量"><a href="#vue全局变量" class="headerlink" title="vue全局变量"></a>vue全局变量</h1><h4 id="问题引入："><a href="#问题引入：" class="headerlink" title="问题引入："></a>问题引入：</h4><p>因为vue项目中，有一个需求是下载文件，即通过windows.open() 打开特定url实现文件的下载，url地址是使用硬编码的形式写在项目中，但是在项目的迁移过程中不够方便。所以，一直在寻找全局变量的方式来解决问题。</p><h3 id="方法和原理"><a href="#方法和原理" class="headerlink" title="方法和原理:"></a>方法和原理:</h3><p>1、单独新建一个全局变量模板文件，模板中定义一些变量或函数的初始状态，用export default暴露出去。</p><p>2、在main.js中引入，并通过Vue.prototype挂载实例，这时，在项目中就可以通过项目名.变量进行使用。</p><h3 id="实例代码实现"><a href="#实例代码实现" class="headerlink" title="实例代码实现"></a>实例代码实现</h3><p>1、新建global.js文件，在该文件中声明变量：如</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> downloadUrl =<span class="string">&quot;0.0.0.0&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    downloadUrl,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>2、在main.js中引用</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> global_msg <span class="keyword">from</span> xxx/<span class="built_in">global</span>.js</span><br><span class="line">Vue.prototype.global_msg = global_msg</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>3、项目中使用</p><p>直接引用：</p><p>this.global_msg，如</p><p>console.log(this.global_msg.downloadUrl);</p><p>全局变量名就是Vue.prototype.xxx中的xxx；</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;vue全局变量&quot;&gt;&lt;a href=&quot;#vue全局变量&quot; class=&quot;headerlink&quot; title=&quot;vue全局变量&quot;&gt;&lt;/a&gt;vue全局变量&lt;/h1&gt;&lt;h4 id=&quot;问题引入：&quot;&gt;&lt;a href=&quot;#问题引入：&quot; class=&quot;headerlink&quot; ti</summary>
+      
+    
+    
+    
+    
+    <category term="vue" scheme="https://x-y-c.github.io/blog/tags/vue/"/>
+    
+  </entry>
+  
+</feed>

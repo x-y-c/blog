@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content=""><meta name="keywords" content=""><meta name="author" content="xyc"><meta name="copyright" content="xyc"><title>blog</title><link rel="shortcut icon" href="/blog/melody-favicon.ico"><link rel="stylesheet" href="/blog/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '5.3.0'
+} </script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/blog/atom.xml" title="blog" type="application/atom+xml">
+</head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">java标准输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="toc-number">2.</span> <span class="toc-text">格式化输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hashmap%E9%81%8D%E5%8E%86"><span class="toc-number">3.</span> <span class="toc-text">hashmap遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">数组基本操作</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/blog/img/avatar.png"></div><div class="author-info__name text-center">xyc</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/blog/archives"><span class="pull-left">Articles</span><span class="pull-right">26</span></a><a class="author-info-articles__tags article-meta" href="/blog/tags"><span class="pull-left">Tags</span><span class="pull-right">10</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://yangchen-1252650257.cos.ap-beijing.myqcloud.com/assets/img/v2-666c1642237819a9a20503b635c71ce0_720w.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/blog/">blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/blog/">Home</a><a class="site-page" href="/blog/archives">Archives</a><a class="site-page" href="/blog/tags">Tags</a><a class="site-page" href="/blog/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">No title</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-08-18</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>Java基础问题记录–BabyYang</p>
+<p>写逻辑这么久才发现自己是面向百度编程</p>
+<p>基础的一些java用法都没记住真的太菜啦</p>
+<h3 id="java标准输入"><a href="#java标准输入" class="headerlink" title="java标准输入"></a>java标准输入</h3><p>基础的Scanner输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Scanner sc &#x3D; new Scanner(System.in);</span><br><span class="line">sc.nextLine();</span><br><span class="line">sc.next();</span><br><span class="line">sc.nextInt();</span><br></pre></td></tr></table></figure>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cy973071263/article/details/88908810">https://blog.csdn.net/cy973071263/article/details/88908810</a></p>
+<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> d = <span class="number">12345.678</span>;</span><br><span class="line"><span class="comment">//直接截断</span></span><br><span class="line">DecimalFormat df = <span class="keyword">new</span> DecimalFormat(<span class="string">&quot;#.00&quot;</span>);</span><br><span class="line">System.out.println(df.format(d));</span><br><span class="line"><span class="comment">//四舍五入</span></span><br><span class="line">System.out.println(String.format(<span class="string">&quot;%.2f&quot;</span>, d));</span><br><span class="line">System.out.println((<span class="keyword">double</span>) Math.round(d * <span class="number">100</span>) / <span class="number">100</span>)</span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// 12345.67</span></span><br><span class="line"><span class="comment">// 12345.68</span></span><br><span class="line"><span class="comment">// 12345.68</span></span><br></pre></td></tr></table></figure>
+<h3 id="hashmap遍历"><a href="#hashmap遍历" class="headerlink" title="hashmap遍历"></a>hashmap遍历</h3><ul>
+<li><p>hashmap遍历不会真的太蠢惹，遍历有超多方法</p>
+</li>
+<li><p>首先是定义 ： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br></pre></td></tr></table></figure></li>
+<li><p>方法1 for-each 迭代 entries</p>
+<p>这是最常见的方法，并在大多数情况下更可取的。当你在循环中需要使用Map的键和值时，就可以使用这个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Map.Entry&lt;Integer, Integer&gt; entry : map.entrySet())&#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;key = &quot;</span> + entry.getKey() + <span class="string">&quot;, value = &quot;</span> + entry.getValue())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：For-Each循环是Java5新引入的，所以只能在Java5以上的版本中使用。如果你遍历的map是null的话，For-Each循环会抛出NullPointerException异常，所以在遍历之前你应该判断是否为空引用。</p>
+</li>
+<li><p>方法2 for-each 迭代keys和values</p>
+<p>如果你只需要用到map的keys或values时，你可以遍历KeySet或者values代替entrySet</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line"> </span><br><span class="line"><span class="comment">//iterating over keys only</span></span><br><span class="line"><span class="keyword">for</span> (Integer key : map.keySet()) &#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;Key = &quot;</span> + key);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//iterating over values only</span></span><br><span class="line"><span class="keyword">for</span> (Integer value : map.values()) &#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;Value = &quot;</span> + value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法比entrySet迭代具有轻微的性能优势(大约快10%)并且代码更简洁</p>
+</li>
+<li><p>方法3 使用Iterator迭代</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Map.Entry&lt;Integer, Integer&gt;&gt; entries = map.entrySet().iterator();</span><br><span class="line"><span class="keyword">while</span> (entries.hasNext()) &#123;</span><br><span class="line">	Map.Entry&lt;Integer, Integer&gt; entry = entries.next();</span><br><span class="line">	System.out.println(<span class="string">&quot;Key = &quot;</span> + entry.getKey() + <span class="string">&quot;, Value = &quot;</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个似乎有点多余但它具有自己的优势。首先，它是遍历老java版本map的唯一方法。另外一个重要的特性是可以让你在迭代的时候从map中删除entries的(通过调用iterator.remover())唯一方法.如果你试图在For-Each迭代的时候删除entries，你将会得到unpredictable resultes 异常。</p>
+<p>从性能方法看，这个方法等价于使用For-Each迭代</p>
+</li>
+<li><p>方法4 迭代keys并搜索values[超级低效]</p>
+<p>这个方法看上去比方法1更简洁，但是实际上它更慢更低效，通过key得到value值更耗时（这个方法在所有实现map接口的map中比方法#1慢20%-200%）。<br>参考:<a target="_blank" rel="noopener" href="https://blog.csdn.net/scgyus/article/details/79105211">https://blog.csdn.net/scgyus/article/details/79105211</a></p>
+</li>
+</ul>
+<h3 id="数组基本操作"><a href="#数组基本操作" class="headerlink" title="数组基本操作"></a>数组基本操作</h3><ol>
+<li><p>声明一个int型的数组</p>
+<p>int[] array  或 int array[]</p>
+</li>
+<li><p>给数组分配空间</p>
+<p>array=new int[10]</p>
+</li>
+<li><p>给数组赋值</p>
+<p>a. 初始化赋值  array={0, 1, 2, 3, 4, 5}</p>
+<p>b. 利用下标赋值  array[0] = 1</p>
+<p>c. 使用循环赋值</p>
+<p>for(int i=0; i&lt;array.length();i++){</p>
+<p>​    array[i] = in.nextInt();</p>
+<p>}</p>
+</li>
+<li><p>数组输出</p>
+<p>传统for，类似赋值时的方法</p>
+<p>for each，for(int a:array)</p>
+<p>Array中的toString方法 Arrays.toString(array)</p>
+</li>
+<li><p>多维数组</p>
+<p>在java中实际上没有多维数组，只有一维数组</p>
+<p>多维数组被解读为数组的数组</p>
+<p>int[] [] array2 = { {1, 2}, {3, 4} )</p>
+</li>
+</ol>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">xyc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://x-y-c.github.io/blog/2022/08/18/2020-10-18-Java基础问题记录/">https://x-y-c.github.io/blog/2022/08/18/2020-10-18-Java基础问题记录/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="next-post pull-right"><a href="/blog/2022/08/18/2021-01-12-%E5%A4%9A%E7%BA%BF%E7%A8%8B5-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90/"><span>java多线程之线程安全分析</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://yangchen-1252650257.cos.ap-beijing.myqcloud.com/assets/img/v2-666c1642237819a9a20503b635c71ce0_720w.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By xyc</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/blog/js/utils.js?version=1.9.0"></script><script src="/blog/js/fancybox.js?version=1.9.0"></script><script src="/blog/js/sidebar.js?version=1.9.0"></script><script src="/blog/js/copy.js?version=1.9.0"></script><script src="/blog/js/fireworks.js?version=1.9.0"></script><script src="/blog/js/transition.js?version=1.9.0"></script><script src="/blog/js/scroll.js?version=1.9.0"></script><script src="/blog/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
